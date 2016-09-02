@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   get '/auth/github/callback', to: "sessions#create"
   # get '/auth/oauth/callback', as: "github_login"
 
+  get "/logout", to: "sessions#destroy", as: "github_logout"
+
   # get 'https://github.com/login/oauth/authorize', to: as: "login_with_gitgub"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

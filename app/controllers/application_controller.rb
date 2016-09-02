@@ -1,9 +1,13 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
-  helper_method :github
+  helper_method :current_user
 
-  def github
-    @github ||= GithubService.new
+  def current_user
+    @current_user ||= User.find(session[:user_id]) if session[:user_id]
+  end
+
+  def github_service
+    @github_service ||= GithubService.new
   end
 end

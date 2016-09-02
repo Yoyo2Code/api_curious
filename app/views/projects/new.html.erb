@@ -1,1 +1,43 @@
-HI
+<% if current_user %>
+  <%= current_user.username %> <br>
+  <%= image_tag current_user.picture_url %> <br>
+  Followers: <%= current_user.followers %> <br>
+  Following: <%= current_user.following %> <br>
+<% end %>
+
+<% if @github_data %>
+  <% if @github_data.organizations.empty? %>
+    Organizations:
+    <br>
+    <br>
+  <% else %>
+    Organizations :<%= @github_data.organizations %>
+    <br>
+    <br>
+  <% end %>
+
+  Repositories: <br>
+  <% @github_data.repositories.each do |repo| %>
+    <%= repo %> <br>
+  <% end %>
+  <br>
+  <br>
+
+  Followed Events: <br>
+  <% @github_data.followed_events.each do |event| %>
+    <%= event.name %> <br>
+    <%= event.name.bio.date.asdfsdf %> <br>
+    <%= event.name %> <br>
+    <%= event.name %> <br>
+    <%= event.name %> <br>
+  <% end %>
+  <br>
+  <br>
+
+  Recent User History: <br>
+  <% @github_data.recent_user_history.each do |history| %>
+    <%= history %> <br>
+  <% end %>
+  <br>
+  <br>
+<% end %>
