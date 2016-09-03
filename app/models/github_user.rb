@@ -9,20 +9,19 @@ class GithubUser
   def organizations
     result = github_service.organizations(current_user)
     result.each do |organization|
-      Organization.new()
+      Organization.new(organization)
     end
   end
 
   def repositories
     result = github_service.repositories(current_user)
     result.map do |repo|
-      Repository.new()
+      Repository.new(repo)
     end
   end
 
   def followed_events
     result = github_service.followed_events(current_user)
-
     result.each do |event|
       Event.new(event)
     end
@@ -36,7 +35,7 @@ class GithubUser
 
   def recent_user_history
     result = github_service.recent_user_history(current_user)
-    extract_commits(result)
+    # extract_commits(result)
   end
 
   def extract_commits(result)
